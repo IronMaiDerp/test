@@ -589,6 +589,7 @@ catch(Exception e){
             txtNum_Badge.setText(Rs.getString(13));
             txtEmail.setText(Rs.getString(14));
             // C A SUPPRIMAI //
+            ENCORE UN OTRE
 
 
         }
