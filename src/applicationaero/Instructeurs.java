@@ -5,6 +5,7 @@
  */
 package applicationaero;
 
+
 import java.sql.*;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -23,7 +24,7 @@ private Menu fen;
     
     
     
-    Connecter conn = new Connecter();
+    bdd.Connecter conn = new bdd.Connecter();
     Statement stm;
     ResultSet Rs;
     DefaultTableModel model=new DefaultTableModel();

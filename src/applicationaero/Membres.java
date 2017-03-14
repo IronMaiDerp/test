@@ -24,7 +24,7 @@ private Menu fen;
      * Creates new form Membres
      */
     
-    Connecter conn = new Connecter();
+    bdd.Connecter conn = new bdd.Connecter();
     Statement stm;
     ResultSet Rs;
     DefaultTableModel model=new DefaultTableModel();

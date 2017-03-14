@@ -1,4 +1,4 @@
-package applicationaero;
+package bdd;
 
 
 
@@ -12,6 +12,7 @@ public static void main(String args[]) {
 }
     Connection con;
   public Connecter() {
+     
     try {
         Class.forName("org.postgresql.Driver");
     }
@@ -27,7 +28,7 @@ public static void main(String args[]) {
         System.err.println(e);
       }
   }
-     Connection obtenirconnexion()
+     public Connection obtenirconnexion()
              {
                  return con;
              }
