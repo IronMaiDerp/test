@@ -121,6 +121,7 @@ tblAvions.setModel(model);
         txtHForfait2 = new javax.swing.JTextField();
         txtHForfait3 = new javax.swing.JTextField();
         txtReduc = new javax.swing.JTextField();
+        RetourAvions = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -227,6 +228,11 @@ tblAvions.setModel(model);
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblAvions.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAvionsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblAvions);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -261,8 +267,18 @@ tblAvions.setModel(model);
         });
 
         Modif.setText("Modifier");
+        Modif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifActionPerformed(evt);
+            }
+        });
 
         Suppr.setText("Supprimer");
+        Suppr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SupprActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -378,6 +394,13 @@ tblAvions.setModel(model);
                 .addGap(29, 29, 29))
         );
 
+        RetourAvions.setText("Retour");
+        RetourAvions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RetourAvionsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -385,24 +408,29 @@ tblAvions.setModel(model);
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(376, 376, 376))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(RetourAvions)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(376, 376, 376))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(13, 13, 13)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RetourAvions))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -489,6 +517,82 @@ tblAvions.setModel(model);
         afficher();
     }//GEN-LAST:event_ActuActionPerformed
 
+    private void ModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifActionPerformed
+        // TODO add your handling code here:
+        
+        try{
+    if(JOptionPane.showConfirmDialog (null,"confirmer la modification","modification",
+            JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
+        
+        stm.executeUpdate("UPDATE avion SET num_avion='"+txtNum_Avions.getText()+"',Immatriculation='"+txtImmatriculation.getText()+
+                "',taux='"+txtTaux.getText()+ "',numerotypeavion='"+txtNumType.getSelectedItem()+
+                "' WHERE num_avion= "+txtNum_Avions.getText());
+
+        afficher();
+               
+    }
+}     
+catch(Exception e)
+{
+    JOptionPane.showMessageDialog(null,"erreur modif ! "+e.getMessage());
+    System.err.println(e);
+}
+        
+    }//GEN-LAST:event_ModifActionPerformed
+
+    private void tblAvionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAvionsMouseClicked
+        // TODO add your handling code here:
+                String id;
+        id = (String.valueOf(tblAvions.getValueAt(tblAvions.getSelectedRow(), 0)));
+        try {
+            Rs=stm.executeQuery("Select * from avion Where num_avion='"+id+"'");
+
+            Rs.next();
+            txtNum_Avions.setText(Rs.getString(1));
+            txtImmatriculation.setText(Rs.getString(2));
+            txtTaux.setText(Rs.getString(3)); 
+           txtNumType.setSelectedItem(Rs.getString(4)); 
+            
+
+
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"erreur de deplacement "+ex.getLocalizedMessage());
+        }
+
+    }//GEN-LAST:event_tblAvionsMouseClicked
+
+    private void SupprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupprActionPerformed
+        // TODO add your handling code here:
+        
+try {
+    if(JOptionPane.showConfirmDialog(null,"êtes vous sur de vouloir supprimer cet avion "
+    ,"supprimer avion",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
+        
+    if(txtNum_Avions.getText().length() != 0) {
+        stm.executeUpdate("Delete From avion where Num_Avion="+txtNum_Avions.getText()); afficher();
+        
+    }
+    else {
+        JOptionPane.showMessageDialog(null,"veuillez remplire le champ Num_Avions!! "); 
+        
+    }
+}   
+catch(Exception e) 
+{
+    JOptionPane.showMessageDialog(null,"erreur suppr \n"+e.getMessage());
+            
+}    
+      
+        
+    }//GEN-LAST:event_SupprActionPerformed
+
+    private void RetourAvionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetourAvionsActionPerformed
+
+        this.dispose();
+        fen = new Menu();
+    }//GEN-LAST:event_RetourAvionsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -528,6 +632,7 @@ tblAvions.setModel(model);
     private javax.swing.JButton Actu;
     private javax.swing.JButton Ajout;
     private javax.swing.JButton Modif;
+    private javax.swing.JButton RetourAvions;
     private javax.swing.JButton Suppr;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
